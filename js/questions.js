@@ -23,7 +23,7 @@ var questions = [
     explanation: "Write an explanation."
   },
   {
-    prompt: "Which of the following is not a string method:",
+    prompt: "Which of the following is not a string method?",
     choices: ["trim", "toUpperCase", "splice", "slice"],
     ans: "splice",
     explanation: "The splice function is a method of arrays, not strings."

@@ -1,1 +1,8 @@
 /* add custom styles */
+.question {
+  padding-top: 20px;
+}
+
+.radio {
+  margin-left: 15px;
+}
