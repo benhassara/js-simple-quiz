@@ -92,8 +92,8 @@ function scoreText(total, numRight){
 function parseExpl(question){
   //question is a question obj
   var div = $('<div>');
-  var ans = $('<h5>').text('Answer: ' + question.ans).css('color', 'darkgreen');
-  var expl = $('<p>').text(question.explanation);
+  var ans = $('<h5>').html('Answer: ' + question.ans).css('color', 'darkgreen');
+  var expl = $('<p>').html(question.explanation);
 
   if (question.explanation.startsWith('http')) {
     var src = $('<source>').attr('src', question.explanation);

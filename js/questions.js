@@ -16,7 +16,7 @@ var questions = [
     explanation: "Write an explanation."
   },
   {
-    prompt: "A switch statement is a: ",
+    prompt: "A <code>switch</code> statement is a: ",
     choices: ["conditional structure", "looping strucuture",
               "logical operator", "string method"],
     ans: "conditional structure",
@@ -24,24 +24,24 @@ var questions = [
   },
   {
     prompt: "Which of the following is not a string method?",
-    choices: ["trim", "toUpperCase", "splice", "slice"],
-    ans: "splice",
-    explanation: "The splice function is a method of arrays, not strings."
+    choices: ["<code>trim</code>", "<code>toUpperCase</code>", "<code>splice</code>", "<code>slice</code>"],
+    ans: "<code>splice</code>",
+    explanation: "The <code>splice</code> function is a method of arrays, not strings."
   },
   {
     prompt: "Variables declared inside of a function are:",
     choices: ["part of the function's local scope",
               "descendants of the function",
               "part of the global scope",
-              "don't need to be declared with var"],
+              "don't need to be declared with <code>var</code>"],
     ans: "part of the function's local scope",
     explanation: "Write an explanation."
   },
   {
     prompt: "You can avoid hoisting by:",
-    choices: ["using the var keyword", "writing functions",
+    choices: ["using the <code>var</code> keyword", "writing functions",
               "using ternary operators", "fishing"],
-    ans: "using the var keyword",
+    ans: "using the <code>var</code> keyword",
     explanation: "Write an explanation."
   },
   {
@@ -52,19 +52,19 @@ var questions = [
     explanation: "Write an explanation"
   },
   {
-    prompt: "What does 'this is a string'.split() return?",
-    choices: ["['this is a string']",
-              "['t', 'h', 'i', 's', 'i', 's', 'a', 's', 't', 'r', 'i', 'n', 'g']",
-              "['this', 'is', 'a', 'string']",
-              "['this', ' ', 'is', ' ', 'a', ' ', 'string']"],
-    ans: "['this is a string']",
-    explanation: "When you call str.split without the argument for the delimiter, it returns an array with a single element whose value is equal to str."
+    prompt: "What does <code>'this is a string'.split()</code> return?",
+    choices: ["<code>['this is a string']</code>",
+              "<code>['t', 'h', 'i', 's', 'i', 's', 'a', 's', 't', 'r', 'i', 'n', 'g']</code>",
+              "<code>['this', 'is', 'a', 'string']</code>",
+              "<code>['this', ' ', 'is', ' ', 'a', ' ', 'string']</code>"],
+    ans: "<code>['this is a string']</code>",
+    explanation: "When you call <code>str.split</code> without the argument for the delimiter, it returns an array with a single element whose value is equal to <code>str</code>."
   },
   {
-    prompt: "What value does a function return if it contains no return statement?",
-    choices: ["null", "undefined", "it doesn't return anything", "42"],
-    ans: "undefined",
-    explanation: "A function will return undefined if you don't put a return statement in the function body."
+    prompt: "What value does a function return if it contains no <code>return</code> statement?",
+    choices: ["<code>null</code>", "<code>undefined</code>", "it doesn't return anything", "<code>42</code>"],
+    ans: "<code>undefined</code>",
+    explanation: "A function will return <code>undefined</code> if you don't put a <code>return</code> statement in the function body."
   },
   {
     prompt: "What do you call a loop that runs forever?",
