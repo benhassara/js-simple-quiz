@@ -5,8 +5,65 @@ var activeQuestions = [];
 
 
 $(document).on('ready', function() {
-  console.log('sanity check!');
+  // console.log('sanity check!');
+  selectQuestions(5);
+  var elems = genQuestions(5);
+  var $btnSubmit = $('<button>').attr({'type': 'submit', 'class': 'btn btn-primary'});
+  var $btnDiv = $('<div>').addClass('text-center');
+
+  $btnDiv.css('margin-top', '15px');
+
+  $btnSubmit.html('Submit');
+  $btnSubmit.attr('id', 'btn-submit');
+  $btnSubmit.appendTo($btnDiv);
+
+
+  for (var i = 0; i < elems.length; i++){
+    $(elems[i]).appendTo($("#js-quiz"));
+  }
+  $btnDiv.appendTo($("#js-quiz"));
+
+  // $btnSubmit.on('click', function(e){
+  //   e.preventDefault();
+  //   console.log('noob!');
+  // });
+
+  $('#js-quiz').on('submit', function(e){
+    e.preventDefault();
+    var answersGiven = [];
+    var wrngAns = [];
+    var wrngQs = [];
+
+    $('input:checked').each(function(){
+      answersGiven.push(this.value);
+    });
+
+    for (var i = 0; i < answersGiven.length; i++){
+      if (answersGiven[i] !== activeQuestions[i].ans)
+        wrngAns.push(i);
+    }
+
+    wrngQs = wrngAns.map(function(n){return n+1;});
+
+    $('<p>').html(scoreText(answersGiven.length, answersGiven.length - wrngAns.length)).appendTo($('.modal-body'));
+
+    if (wrngAns.length > 0) {
+      var $showWrong = $('<p>').html('Questions answered incorrectly: ' + wrngQs.join(", "));
+      $showWrong.appendTo($('.modal-body'));
+    }
+
+    $("#ansModal").modal('show');
+
+  });
+
 });
+
+function scoreText(total, numRight){
+  var output = "You answered " + numRight + " of " + total + " questions correctly. ";
+  output += "A score of " + ((numRight / total) * 100).toFixed(2) + "%.";
+
+  return output;
+}
 
 function parseChoices(num, choices) {
   //choices is an array of just for multiple choice
@@ -17,7 +74,7 @@ function parseChoices(num, choices) {
 
   for (var i = 0; i < shuffledChoices.length; i++) {
     var label = $('<label>')[0];
-    var input = $('<input>').attr({type: 'radio', name: "q" + num})[0];
+    var input = $('<input>').attr({type: 'radio', name: "q" + num, 'value': shuffledChoices[i]})[0];
     var newDiv = $('<div>').addClass("radio")[0];
 
     $(input).appendTo(label);
