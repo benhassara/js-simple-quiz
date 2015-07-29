@@ -30,6 +30,8 @@ $(document).on('ready', function() {
 
   });
 
+  $('#ansModal').on('hide.bs.modal', function(){location.reload();});
+
 });
 
 function populateModal(answers, modal){
