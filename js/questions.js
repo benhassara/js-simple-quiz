@@ -70,6 +70,6 @@ var questions = [
     prompt: "What do you call a loop that runs forever?",
     choices: ['an infinite loop', 'a singularity', 'a jerk', 'Groundhog Day with Bill Murray'],
     ans: "an infinite loop",
-    explanation: "http://giphy.com/gifs/G8xwi3ghEd02c/html5"
+    explanation: "http://media.giphy.com/media/G8xwi3ghEd02c/giphy.mp4"
   }
 ];

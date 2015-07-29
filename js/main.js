@@ -8,51 +8,67 @@ $(document).on('ready', function() {
   // console.log('sanity check!');
   selectQuestions(5);
   var elems = genQuestions(5);
-  // var $btnSubmit = $('<button>').attr({'type': 'submit', 'class': 'btn btn-primary'});
-  // var $btnDiv = $('<div>').addClass('text-center');
-
-  // $btnDiv.css('margin-top', '15px');
-
-  // $btnSubmit.html('Submit');
-  // $btnSubmit.attr('id', 'btn-submit');
-  // $btnSubmit.appendTo($btnDiv);
 
 
   for (var i = 0; i < elems.length; i++){
     $(elems[i]).appendTo($("#js-quiz"));
   }
-  // $btnDiv.appendTo($("#js-quiz"));
+
   $('#js-quiz').append(addSubmit());
 
   $('#js-quiz').on('submit', function(e){
     e.preventDefault();
     var answersGiven = [];
-    var wrngAns = [];
-    var wrngQs = [];
 
     $('input:checked').each(function(){
       answersGiven.push(this.value);
     });
 
-    for (var i = 0; i < answersGiven.length; i++){
-      if (answersGiven[i] !== activeQuestions[i].ans)
-        wrngAns.push(i);
-    }
-
-    wrngQs = wrngAns.map(function(n){return n+1;});
-
-    $('<p>').html(scoreText(answersGiven.length, answersGiven.length - wrngAns.length)).appendTo($('.modal-body'));
-
-    if (wrngAns.length > 0) {
-      var $showWrong = $('<p>').html('Questions answered incorrectly: ' + wrngQs.join(", "));
-      $showWrong.appendTo($('.modal-body'));
-    }
+    populateModal(answersGiven, $('.modal-body'));
 
     $("#ansModal").modal('show');
 
   });
 
 });
+
+function populateModal(answers, modal){
+  var wrngAns = [];
+  var wrngQs = [];
+
+  for (var i = 0; i < answers.length; i++){
+      if (answers[i] !== activeQuestions[i].ans)
+        wrngAns.push(i);
+  }
+  wrngQs = wrngAns.map(function(n){return n+1;});
+
+  $('<p>').html(scoreText(answers.length, answers.length-wrngAns.length)).appendTo(modal);
+
+  if (wrngAns.length > 0){
+    var expls = showExpl(wrngAns);
+    $(modal).append(showWrongs(wrngQs));
+    for (var a = 0; a < expls[0].length; a++) {
+      modal.append(expls[0][a]).append(expls[1][a]);
+    }
+  }
+}
+
+function showExpl(wrongAs){
+  var fails = wrongAs.map(function(n){return activeQuestions[n];});
+  var prompts = [];
+  var expls = [];
+
+  for (var i = 0; i < wrongAs.length; i++){
+    prompts.push($(parsePrompt(wrongAs[i]+1, fails[i].prompt)));
+    expls.push(parseExpl(fails[i]));
+  }
+  return [prompts, expls];
+}
+
+function showWrongs(wrongQs){
+  var showWrong = $('<p>').html('Questions answered incorrectly: ' + wrongQs.join(", "));
+  return showWrong;
+}
 
 function addSubmit(){
   var btn = $('<button>').attr({'type': 'submit', 'class': 'btn btn-primary', 'id': 'btn-submit'});
@@ -69,6 +85,21 @@ function scoreText(total, numRight){
   output += "A score of " + ((numRight / total) * 100).toFixed(2) + "%.";
 
   return output;
+}
+
+function parseExpl(question){
+  //question is a question obj
+  var div = $('<div>');
+  var ans = $('<h5>').text('Answer: ' + question.ans).css('color', 'darkgreen');
+  var expl = $('<p>').text(question.explanation);
+
+  if (question.explanation.startsWith('http')) {
+    var src = $('<source>').attr('src', question.explanation);
+    expl = $('<video>').prop({'autoplay': true, 'loop': true});
+    expl.attr({'width': '239', 'height': '191'}).append(src);
+  }
+
+  return div.append(ans).append(expl);
 }
 
 function parseChoices(num, choices) {
