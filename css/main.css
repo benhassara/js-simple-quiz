@@ -1,4 +1,8 @@
 /* add custom styles */
+.shadow {
+  box-shadow: 0px 9px 89px -18px rgba(0,0,0,0.75);
+}
+
 .question {
   padding-top: 20px;
 }

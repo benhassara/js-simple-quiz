@@ -74,7 +74,7 @@ function showWrongs(wrongQs){
 
 function addSubmit(){
   var btn = $('<button>').attr({'type': 'submit', 'class': 'btn btn-primary', 'id': 'btn-submit'});
-  var div = $("<div class='text-center'>").css('margin-top', '15px');
+  var div = $("<div class='text-center'>").css({'margin-top': '15px', 'margin-bottom': '15px'});
 
   btn.html('Submit');
   div.append(btn);
@@ -129,7 +129,7 @@ function parseChoices(num, choices) {
 function parsePrompt(num, prompt) {
   //take in question obj's prompt, return div
   var text = num + ". " + prompt;
-  return $.parseHTML("<div class='prompt'><p>" + text + "</p></div>")[0];
+  return $.parseHTML("<div class='prompt'><p><strong>" + text + "</strong></p></div>")[0];
 }
 
 function genQuestions(num) {
