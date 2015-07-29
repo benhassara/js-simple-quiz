@@ -8,25 +8,21 @@ $(document).on('ready', function() {
   // console.log('sanity check!');
   selectQuestions(5);
   var elems = genQuestions(5);
-  var $btnSubmit = $('<button>').attr({'type': 'submit', 'class': 'btn btn-primary'});
-  var $btnDiv = $('<div>').addClass('text-center');
+  // var $btnSubmit = $('<button>').attr({'type': 'submit', 'class': 'btn btn-primary'});
+  // var $btnDiv = $('<div>').addClass('text-center');
 
-  $btnDiv.css('margin-top', '15px');
+  // $btnDiv.css('margin-top', '15px');
 
-  $btnSubmit.html('Submit');
-  $btnSubmit.attr('id', 'btn-submit');
-  $btnSubmit.appendTo($btnDiv);
+  // $btnSubmit.html('Submit');
+  // $btnSubmit.attr('id', 'btn-submit');
+  // $btnSubmit.appendTo($btnDiv);
 
 
   for (var i = 0; i < elems.length; i++){
     $(elems[i]).appendTo($("#js-quiz"));
   }
-  $btnDiv.appendTo($("#js-quiz"));
-
-  // $btnSubmit.on('click', function(e){
-  //   e.preventDefault();
-  //   console.log('noob!');
-  // });
+  // $btnDiv.appendTo($("#js-quiz"));
+  $('#js-quiz').append(addSubmit());
 
   $('#js-quiz').on('submit', function(e){
     e.preventDefault();
@@ -57,6 +53,16 @@ $(document).on('ready', function() {
   });
 
 });
+
+function addSubmit(){
+  var btn = $('<button>').attr({'type': 'submit', 'class': 'btn btn-primary', 'id': 'btn-submit'});
+  var div = $("<div class='text-center'>").css('margin-top', '15px');
+
+  btn.html('Submit');
+  div.append(btn);
+
+  return div;
+}
 
 function scoreText(total, numRight){
   var output = "You answered " + numRight + " of " + total + " questions correctly. ";
