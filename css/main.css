@@ -10,3 +10,9 @@
 .radio {
   margin-left: 15px;
 }
+
+.modal-body .prompt {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 10px;
+  padding-top: 10px;
+}

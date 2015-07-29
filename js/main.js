@@ -91,7 +91,7 @@ function scoreText(total, numRight){
 
 function parseExpl(question){
   //question is a question obj
-  var div = $('<div>');
+  var div = $('<div class="expl">');
   var ans = $('<h5>').html('Answer: ' + question.ans).css('color', 'darkgreen');
   var expl = $('<p>').html(question.explanation);
 
