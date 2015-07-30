@@ -5,10 +5,8 @@ var activeQuestions = [];
 
 
 $(document).on('ready', function() {
-  // console.log('sanity check!');
   selectQuestions(5);
   var elems = genQuestions(5);
-
 
   for (var i = 0; i < elems.length; i++){
     $(elems[i]).appendTo($("#js-quiz"));
@@ -27,11 +25,9 @@ $(document).on('ready', function() {
     populateModal(answersGiven, $('.modal-body'));
 
     $("#ansModal").modal('show');
-
   });
 
   $('#ansModal').on('hide.bs.modal', function(){location.reload();});
-
 });
 
 function populateModal(answers, modal){
