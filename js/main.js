@@ -1,10 +1,11 @@
-// add scripts
+
 var randQuestions = shuffle(questions);
 //set with func
 var activeQuestions = [];
 
 
 $(document).on('ready', function() {
+
   selectQuestions(5);
   var elems = genQuestions(5);
 
@@ -28,6 +29,7 @@ $(document).on('ready', function() {
   });
 
   $('#ansModal').on('hide.bs.modal', function(){location.reload();});
+
 });
 
 function populateModal(answers, modal){
@@ -35,8 +37,9 @@ function populateModal(answers, modal){
   var wrngQs = [];
 
   for (var i = 0; i < answers.length; i++){
-      if (answers[i] !== activeQuestions[i].ans)
-        wrngAns.push(i);
+    if (answers[i] !== activeQuestions[i].ans) {
+      wrngAns.push(i);
+    }
   }
   wrngQs = wrngAns.map(function(n){return n+1;});
 
